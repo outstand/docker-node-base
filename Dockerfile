@@ -1,4 +1,4 @@
-FROM node:5.8
+FROM node:5.9
 MAINTAINER Ryan Schlesinger <ryan@outstand.com>
 
 # grab gosu and dumb-init

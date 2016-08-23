@@ -1,8 +1,9 @@
-FROM node:6.2.1
+FROM node:6.4.0
 MAINTAINER Ryan Schlesinger <ryan@outstand.com>
 
 ENV GOSU_VERSION 1.9
-ENV DUMB_INIT_VERSION 1.0.2
+ENV DUMB_INIT_VERSION 1.1.3
+ENV WATCHMAN_VERSION v4.6.0
 
 RUN mkdir -p /tmp/build && \
     cd /tmp/build && \
@@ -18,16 +19,14 @@ RUN mkdir -p /tmp/build && \
     chmod +x dumb-init_${DUMB_INIT_VERSION}_amd64 && \
     cp dumb-init_${DUMB_INIT_VERSION}_amd64 /bin/dumb-init && \
     ln -s /bin/dumb-init /usr/bin/dumb-init && \
-    cd /tmp && \
-    rm -rf /tmp/build && \
-    rm -rf /root/.gnupg
-
-ENV WATCHMAN_VERSION v4.5.0
-
-RUN git clone https://github.com/facebook/watchman.git \
+    git clone https://github.com/facebook/watchman.git \
       && cd watchman \
       && git checkout ${WATCHMAN_VERSION} \
       && ./autogen.sh \
       && ./configure --without-python \
       && make \
-      && make install
+      && make install && \
+    cd /tmp && \
+    rm -rf /tmp/build && \
+    rm -rf /root/.gnupg
+

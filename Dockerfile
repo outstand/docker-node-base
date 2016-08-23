@@ -32,3 +32,7 @@ RUN mkdir -p /tmp/build && \
 
 # Use dapper to build fsconsul from https://github.com/Cimpress-MCP/fsconsul
 COPY fsconsul /bin/fsconsul
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    jq \
+  && rm -rf /var/lib/apt/lists/*

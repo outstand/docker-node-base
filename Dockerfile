@@ -1,9 +1,9 @@
-FROM node:6.4.0
+FROM node:6.8.0
 MAINTAINER Ryan Schlesinger <ryan@outstand.com>
 
-ENV GOSU_VERSION 1.9
-ENV DUMB_INIT_VERSION 1.1.3
-ENV WATCHMAN_VERSION v4.6.0
+ENV GOSU_VERSION 1.10
+ENV DUMB_INIT_VERSION 1.2.0
+ENV WATCHMAN_VERSION v4.7.0
 
 RUN mkdir -p /tmp/build && \
     cd /tmp/build && \
@@ -35,4 +35,12 @@ COPY fsconsul /bin/fsconsul
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV YARN_VERSION 0.16.0-1
+
+RUN apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3 && \
+      echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+      apt-get update && apt-get install -y --no-install-recommends \
+      yarn=${YARN_VERSION} \
   && rm -rf /var/lib/apt/lists/*

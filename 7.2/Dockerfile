@@ -1,4 +1,4 @@
-FROM node:7.2.0
+FROM node:7.2.1
 MAINTAINER Ryan Schlesinger <ryan@outstand.com>
 
 ENV GOSU_VERSION 1.10
@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
   && rm -rf /var/lib/apt/lists/*
 
-ENV YARN_VERSION 0.17.9-1
+ENV YARN_VERSION 0.18.1-1
 
 RUN apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3 && \
       echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \

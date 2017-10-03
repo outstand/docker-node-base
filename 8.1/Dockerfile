@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
   && rm -rf /var/lib/apt/lists/*
 
-ENV YARN_VERSION 0.27.5
+ENV YARN_VERSION 1.1.0
 
 RUN set -ex \
   && for key in \

@@ -16,4 +16,5 @@ COPY --from=watchman /usr/local/var/run/watchman /usr/local/var/run/watchman/
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -f /usr/local/bin/yarnpkg
